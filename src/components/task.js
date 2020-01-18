@@ -1,20 +1,11 @@
 import React from 'react';
-
+import {connect} from 'react-redux'
 
 class Task extends React.Component{
-	constructor(props){
-		super(props)
-		this.state = {
-			textDeco : "",
-			done : false
-		}
-	}
+	
 	handleClick = (e)=>{
 		if(!this.state.done){
-			this.setState({
-				done : true,
-				textDeco: "line-through"
-			})
+			console.log(this.props)
 		}
 		else{
 			var deleteTask = this.props.deleteTask
@@ -31,4 +22,18 @@ class Task extends React.Component{
 	}
 }
 
-export default Task
+const mapStateToProps = (state) => {
+	return {
+		tasks: state.done
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		updateDones : (dones) => {
+			dispatch({type:'updateDones', dones:dones})
+		}
+	}
+}
+
+export default connect(mapStateToProps)(Task)

@@ -5,12 +5,6 @@ import {connect} from 'react-redux'
 
 
 class Todo extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={
-			tasks:null
-		}
-	}
 	
 	handleSubmit = (e) =>{
 		e.preventDefault();
@@ -28,11 +22,6 @@ class Todo extends React.Component{
 		console.log("deleted")
 		this.props.updateTasks(tasks)
 	}
-	componentWillReceiveProps(nextProps){
-		if(nextProps.tasks!=this.props.tasks){
-			this.setState({tasks:nextProps.tasks});
-		}
-	}
 	
 	render(){
 		console.log("rendering todo")
@@ -46,7 +35,6 @@ class Todo extends React.Component{
 				// return <Task task={i} key ={index} deleteTask = {this.deleteTask.bind(this)} />
 				})
 			}
-			<Task task="hello" key={5} deleteTask = {this.deleteTask.bind(this)} />
 			</ul>
 			<form onSubmit = {this.handleSubmit} >
 			<input type="text" id="task_input" ></input>
